@@ -1,9 +1,9 @@
 package week2;
 
 public class SmartPhone {
-    private String brand;
-    private String model;
-    private int price;
+    private final String brand;
+    private final String model;
+    private final int price;
 
     public SmartPhone(String brand, String model){
         // 생성자 체이닝
