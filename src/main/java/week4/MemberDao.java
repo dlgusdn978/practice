@@ -55,5 +55,36 @@ public class MemberDao {
         }
         return md;
     }
+
+    public void updatePassword(String targetId, String newPw){
+        String sql = "UPDATE user SET pw = ? WHERE id = ?";
+
+        try(Connection con = DriverManager.getConnection(url, id, pw);
+            PreparedStatement pstmt = con.prepareStatement(sql)){
+            pstmt.setString(1, newPw);
+            pstmt.setString(2, targetId);
+
+            int res = pstmt.executeUpdate();
+            if(res>0) System.out.println("비밀번호 변경 완료: "+targetId);
+            else System.out.println("해당 아이디를 찾을 수 없습니다.");
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteMember(String targetId){
+        String sql = "DELETE FROM user WHERE id = ?";
+
+        try(Connection con = DriverManager.getConnection(url, id, pw);
+            PreparedStatement pstmt = con.prepareStatement(sql)){
+            pstmt.setString(1, targetId);
+            int res = pstmt.executeUpdate();
+
+            if(res>0) System.out.println("삭제 완료.");
+            else System.out.println("해당 아이디를 찾을 수 없습니다.");
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
 

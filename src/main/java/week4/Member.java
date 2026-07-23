@@ -13,5 +13,8 @@ public class Member {
         }else{
             System.out.println("해당 아이디를 찾을 수 없습니다.");
         }
+
+        md.updatePassword("test", "12345");
+        md.deleteMember("test");
     }
 }
